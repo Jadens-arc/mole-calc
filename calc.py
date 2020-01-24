@@ -23,8 +23,18 @@ class ElementCalc:
                 print('element non in system')
                 return 0
 
-            atomicMass += self.elements[element]
-        return (amount / atomicMass, atomicMass)
+            atomicMass += self.elements[element]['atomic-mass']
+        return float(amount) / atomicMass
+
+    def molesToGrams(self, elements, amount):
+        atomicMass = 0
+        for element in elements:
+            if element not in self.elements:
+                print('element non in system')
+                return 0
+
+            atomicMass += self.elements[element]['atomic-mass']
+        return float(amount) * atomicMass
 
 if __name__ == '__main__':
     myEle = ElementCalc('elementdata.json')
@@ -51,18 +61,20 @@ if __name__ == '__main__':
             myEle.addElement(newElement)
 
         elif userIn == 'gtm':
-            userElements = []
-            userElementIn = input('What elements are present(e.x. HHO = H2O)\nSay done when you are done\n')
-            userElements.append(userElementIn)
-
-            while userElementIn != 'done':
-                userElementIn = input('What elements are present(e.x. HHO = H2O)\nSay done when you are done\n')
-                userElements.append(userElementIn.upper())
-
+            userElements = input('What elements are present(e.x. HHO = H2O)\nSay done when you are done\n')
+            userElements = userElements.upper()
             userMass = input('What is the total mass in grams\n')
 
             answer = myEle.gramToMole(userElements, userMass)
             print(str(answer) + 'mols')
+
+        elif userIn == 'mtg':
+            userElements = input('What elements are present(e.x. HHO = H2O)\nSay done when you are done\n')
+            userElements = userElements.upper()
+            userMass = input('What is the total mass in grams\n')
+
+            answer = myEle.(userElements, userMass)
+            print(str(answer) + 'grams')
 
         else:
             print('not in system')
