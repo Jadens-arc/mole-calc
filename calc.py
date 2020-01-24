@@ -71,9 +71,9 @@ if __name__ == '__main__':
         elif userIn == 'mtg':
             userElements = input('What elements are present(e.x. HHO = H2O)\nSay done when you are done\n')
             userElements = userElements.upper()
-            userMass = input('What is the total mass in grams\n')
+            userMass = input('What is the total mass in moles\n')
 
-            answer = myEle.(userElements, userMass)
+            answer = myEle.molesToGrams(userElements, userMass)
             print(str(answer) + 'grams')
 
         else:
