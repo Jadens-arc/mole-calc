@@ -1,26 +1,26 @@
 {
-    "H":{
-        "name": "Hydrogen",
-        "atomic-mass": 1.00794
-    },
-
-    "P":{
-        "name": "Phosphorus",
-        "atomic-mass": 30.97380
-    },
-
-    "O":{
-        "name": "Oxegen",
-        "atomic-mass": 15.99940
-    },
-
-    "Na":{
+  "H": {
+    "name": "Hydrogen",
+    "atomic-mass": 1.00784
+  },
+  "O": {
+    "name": "Oxygen",
+    "atomic-mass": 15.999
+  },
+  "C": {
+    "name": "Carbon",
+    "atomic-mass": 12.0107
+  },
+  "K": {
+    "name": "Potassium",
+    "atomic-mass": 39.0983
+  },
+  "P": {
+    "name": "Phosphorus",
+    "atomic-mass": 30.973762
+  },
+  "Na":{
         "name": "Sodium",
         "atomic-mass": 22.989768
-    },
-
-    "C":{
-        "name": "Carbon",
-        "atomic-mass": 12.0107
-    }
+  }
 }
