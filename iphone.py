@@ -1,16 +1,15 @@
-import dialogs
 import console
 import clipboard
 from calc import ElementCalc
 
 options = [
-    'Moles to Grams', 
+    'Moles to Grams',
     'Grams to Moles',
     'Add Element'
 ]
   
 userSelect = console.alert(
-        title='mole calc', 
+        title='mole calc',
         button1=options[0],
         button2=options[1],
         button3=options[2]
@@ -63,15 +62,15 @@ elif userSelect == 3:
     try:
         newElement = {
             console.input_alert(
-                title = 'What is the symbol'
+                title='What is the symbol'
             ).upper(): {
                 'name': console.input_alert(
-                    title = 'What is the element\'s name'
+                    title='What is the element\'s name'
                 ).capitalize(),
-                'atomic-mass': 
+                'atomic-mass':
                     float(
                         console.input_alert(
-                            title = 'What is the the atomic mass'
+                            title='What is the the atomic mass'
                         )
                     )
             }
