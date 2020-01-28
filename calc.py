@@ -21,27 +21,26 @@ class ElementCalc:
         # adds new data to dictionary
         self.save()
         # saves it to json file
-
-    def gramsToMoles(self, elements, amount):
-        elements = elements.upper()
+        
+    def parseElement(self, elements):
         atomicMass = 0
+        elements = elements.split(' ')
         for element in elements:
             if element not in self.elements:
                 print('element not in system')
                 return 0
 
             atomicMass += float(self.elements[element]['atomic-mass'])
+        return atomicMass
+
+    def gramsToMoles(self, elements, amount):
+        elements = elements.upper()
+        atomicMass = self.parseElement(elements)
         return float(amount) / atomicMass
 
     def molesToGrams(self, elements, amount):
         elements = elements.upper()
-        atomicMass = 0
-        for element in elements:
-            if element not in self.elements:
-                print('element non in system')
-                return 0
-
-            atomicMass += float(self.elements[element]['atomic-mass'])
+        atomicMass = self.parseElement(elements)
         return float(amount) * atomicMass
 
 if __name__ == '__main__':
