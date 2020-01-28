@@ -1,4 +1,8 @@
 {
+  "Ca": {
+    "name": "Calcium",
+    "atomic-mass": 40.078
+  },
   "H": {
     "name": "Hydrogen",
     "atomic-mass": 1.00784
@@ -19,8 +23,13 @@
     "name": "Phosphorus",
     "atomic-mass": 30.973762
   },
-  "Na":{
+  "Na": {
     "name": "Sodium",
     "atomic-mass": 22.989768
+  },
+  "S":{
+    "name": "Sulfer",
+    "atomic-mass": 32.065
   }
+  
 }
