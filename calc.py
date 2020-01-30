@@ -25,7 +25,11 @@ class ElementCalc:
     def parseElement(self, elements):
         atomicMass = 0
         elements = elements.split(' ')
+        
         for element in elements:
+            element = element.lower()
+            if element == '':
+                continue
             if element not in self.elements:
                 print('element not in system')
                 return 0
@@ -34,12 +38,10 @@ class ElementCalc:
         return atomicMass
 
     def gramsToMoles(self, elements, amount):
-        elements = elements.upper()
         atomicMass = self.parseElement(elements)
         return float(amount) / atomicMass
 
     def molesToGrams(self, elements, amount):
-        elements = elements.upper()
         atomicMass = self.parseElement(elements)
         return float(amount) * atomicMass
 
