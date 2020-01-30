@@ -1,83 +1,49 @@
-import console
 import clipboard
+import dialogs
 from calc import ElementCalc
 
 options = [
-    'Moles to Grams',
-    'Grams to Moles',
-    'Add Element'
+    'Add Element', 'Moles to Grams', 'Moles to Atoms', 'Grams to Moles',
+    'Grams to Atoms', 'Atoms to Grams', 'Atoms to Moles'
 ]
-  
-userSelect = console.alert(
-        title='mole calc',
-        button1=options[0],
-        button2=options[1],
-        button3=options[2]
-    )
-    
+
+userSelect = dialogs.list_dialog(title='mole calc', items=options)
+
 myCalc = ElementCalc('elementdata.json')
-    
-if userSelect == 1:
-    formula = console.input_alert(
-        title='Formula'
-    )
-    
-    amount = int(console.input_alert(
-        title='Amount (in moles)'
-    ))
-    answer = str(float(myCalc.molesToGrams(
-            formula, amount
-        )))
-    isCopy = console.alert(
-        answer,
-        hide_cancel_button=True,
-        button1='copy',
-        button2='done'
-    )
+
+if userSelect == options[0]:
+    formula = dialogs.input_alert(title='Formula')
+
+    amount = int(dialogs.input_alert(title='Amount (in moles)'))
+    answer = str(float(myCalc.molesToGrams(formula, amount)))
+    isCopy = dialogs.alert(
+        answer, hide_cancel_button=True, button1='copy', button2='done')
     if isCopy == 1:
         clipboard.set(answer)
-    
-elif userSelect == 2:
-    formula = console.input_alert(
-        title='Formula'
-    )
-    
-    amount = int(console.input_alert(
-        title='Amount (in grams)'
-    ))
-    answer = str(float(myCalc.gramsToMoles(
-            formula, amount
-        )))
-    isCopy = console.alert(
-        answer,
-        hide_cancel_button=True,
-        button1='copy',
-        button2='done'
-    )
+
+elif userSelect == options[1]:
+    formula = dialogs.input_alert(title='Formula')
+
+    amount = int(dialogs.input_alert(title='Amount (in grams)'))
+    answer = str(float(myCalc.gramsToMoles(formula, amount)))
+    isCopy = dialogs.alert(
+        answer, hide_cancel_button=True, button1='copy', button2='done')
     if isCopy == 1:
         clipboard.set(answer)
-    
-    
-elif userSelect == 3:
+
+elif userSelect == options[2]:
     try:
         newElement = {
-            console.input_alert(
-                title='What is the symbol'
-            ).upper(): {
-                'name': console.input_alert(
-                    title='What is the element\'s name'
-                ).capitalize(),
+            dialogs.input_alert(title='What is the symbol').lower(): {
+                'name':
+                dialogs.input_alert(
+                    title='What is the element\'s name').capitalize(),
                 'atomic-mass':
-                    float(
-                        console.input_alert(
-                            title='What is the the atomic mass'
-                        )
-                    )
+                float(
+                    dialogs.input_alert(title='What is the the atomic mass'))
             }
-            
         }
         myCalc.addElement(newElement)
     except:
-        console.hud_alert('not a number')
-    
+        dialogs.hud_alert('not a number')
 
