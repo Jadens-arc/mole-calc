@@ -1,12 +1,18 @@
-import json
+import json  # for parsing elements json file
 
 
 class ElementCalc:
     def __init__(self, path):
         self.filepath = path
         with open(path, 'r') as rawData:
-            self.elements = json.loads(rawData.read())
+            try:
+                self.elements = json.loads(rawData.read())
+            except:
+                raise KeyboardInterrupt('Not valid json')
+                # throws error if json not valid
+        # loads path into public dictionary and saves path in public filepath
 
+    # writes elements dictonary(as json) to filepath
     def save(self):
         with open(self.filepath, 'w') as savedata:
             savedata.write(
@@ -14,7 +20,9 @@ class ElementCalc:
                     self.elements,
                     indent=2
                 )
+                # converts python dictionary to json
             )
+            # write return json to filepath
 
     def addElement(self, data):
         self.elements.update(data)
@@ -23,18 +31,25 @@ class ElementCalc:
         # saves it to json file
         
     def parseElement(self, elements):
-        atomicMass = 0
-        elements = elements.split(' ')
+        atomicMass = 0  #total mass
         
+        elements = elements.split(' ')
+        # splits string into list
+        
+        # loops through elements list
         for element in elements:
             element = element.lower()
+            
+            # if element is trailing white space it is skipped
             if element == '':
                 continue
+            
+            # if element is not in database raises error  
             if element not in self.elements:
-                print('element not in system')
-                return 0
-
+                raise KeyError('Element not in Database')
+            # adds elemets individual atomic mass to total
             atomicMass += float(self.elements[element]['atomic-mass'])
+            
         return atomicMass
 
     def gramsToMoles(self, elements, amount):
@@ -46,6 +61,7 @@ class ElementCalc:
         return float(amount) * atomicMass
 
 if __name__ == '__main__':
+    print('Element Calulator ')
     myEle = ElementCalc('elementdata.json')
     features = {
         'help or ?': 'for information about what you can do',
